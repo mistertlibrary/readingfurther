@@ -16,9 +16,8 @@
 <meta property="og:title" content="Reading Further">
 <meta property="og:description" content="Advanced strategies for engaging with texts. West Essex High School Library.">
 <meta property="og:url" content="https://mistertlibrary.github.io/readingfurther/">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reading Further">
-<meta name="twitter:description" content="Advanced strategies for engaging with texts. West Essex High School Library.">
+<meta property="og:image" content="https://mistertlibrary.github.io/librarylyceum/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#12140f" media="(prefers-color-scheme: dark)">
 <style>
@@ -114,6 +113,7 @@ body {
   background-image:
     repeating-linear-gradient(0deg,   var(--grid) 0 1px, transparent 1px 48px),
     repeating-linear-gradient(90deg,  var(--grid) 0 1px, transparent 1px 48px);
+  font-variant-numeric: oldstyle-nums;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -213,16 +213,32 @@ body {
   text-transform: uppercase; color: var(--contour);
   margin: 0.7rem 0 0.15rem;
 }
+.index { position: relative; }
+.index::before {
+  content: ""; position: absolute; left: 4px; top: 2.15rem; bottom: 0.4rem;
+  width: 1px; background: var(--rule);
+}
+.index__part { padding-left: 1.1rem; }
 .index a {
-  display: block; font-family: var(--f-head); font-size: 0.66rem;
+  display: block; position: relative; font-family: var(--f-head); font-size: 0.66rem;
   color: var(--ink-soft); text-decoration: none; line-height: 1.32;
-  padding: 0.2rem 0 0.2rem 0.55rem; border-left: 2px solid transparent;
+  padding: 0.2rem 0 0.2rem 1.1rem;
+}
+.index a::before {
+  content: ""; position: absolute; left: 0; top: 0.5em;
+  width: 9px; height: 9px; border: 1.5px solid var(--ink-soft);
+  border-radius: 50%; background: var(--paper);
 }
 .index a:hover { color: var(--ink); }
-.index a.is-here { color: var(--ink); border-left-color: var(--revision); }
+.index a:hover::before { border-color: var(--ink); }
+.index a.is-here { color: var(--ink); }
+.index a.is-here::before { border-color: var(--revision); background: var(--revision); }
 @media (max-width: 1180px) { .index { display: none; } }
 
-.sheet { max-width: var(--measure); margin: 0 auto; padding: 0 1.25rem 6rem; }
+.sheet {
+  max-width: var(--measure); margin: 0 auto;
+  padding: 0 1.75rem 3rem; background: var(--paper);
+}
 
 .title {
   text-align: center; padding: 4rem 0 3rem; margin-bottom: 3rem;
@@ -394,10 +410,13 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--ink-soft); margin-top: 1rem; min-height: 1em;
 }
+.readout, .ledger dd, .term-row span:last-child, .notice-item .attrib,
+.mine__row, .verdict, .bearing-row { font-variant-numeric: tabular-nums lining-nums; }
 .instrument select {
   font-family: var(--f-head); font-size: 0.78rem;
   color: var(--ink); background: var(--paper);
   border: 1px solid var(--rule); padding: 0.35rem 0.4rem;
+  max-width: 100%;
 }
 
 .act {
@@ -591,13 +610,102 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
   margin-top: 0.9rem; min-height: 1em;
 }
 
-.colophon {
-  border-top: 1px solid var(--rule); text-align: center;
-  padding: 2rem 1.25rem calc(4.5rem + env(safe-area-inset-bottom, 0px));
-  font-family: var(--f-head); font-size: 0.64rem; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+.key {
+  border: 1px solid var(--rule); background: var(--paper-alt);
+  padding: 1.5rem 1.35rem 1.6rem; margin-top: 4.5rem;
+  scroll-margin-top: 4.5rem;
 }
-.colophon .dot { margin: 0 0.55em; color: var(--rule); }
+.key__label {
+  font-family: var(--f-mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--contour);
+  text-align: center; margin-bottom: 0.3rem;
+}
+h2.key__name {
+  font-family: var(--f-head); font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.06em; text-align: center; margin-bottom: 1.4rem;
+}
+.key__list { display: grid; gap: 1rem; margin: 0; }
+.key__row {
+  display: grid; grid-template-columns: 2.9rem minmax(0, 1fr);
+  gap: 0.9rem; align-items: start;
+}
+.key__mark {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 1.4rem; padding-top: 0.2rem;
+}
+.key__mark--contour  { color: var(--contour); }
+.key__mark--water    { color: var(--water); }
+.key__mark--revision { color: var(--revision); }
+.key__mark--rule     { color: var(--ink-soft); }
+.key__base           { color: var(--ink-soft); opacity: 0.55; }
+.key__term {
+  font-family: var(--f-head); font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.key__gloss { font-size: 0.85rem; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+.key__traverse { position: relative; width: 11px; height: 34px; }
+.key__traverse::before {
+  content: ""; position: absolute; left: 5px; top: 0; bottom: 0; width: 1px;
+  background: var(--ink-soft); opacity: 0.4;
+}
+.key__stop {
+  position: absolute; left: 0; width: 9px; height: 9px;
+  border: 1.5px solid var(--ink-soft); border-radius: 50%; background: var(--paper-alt);
+}
+.key__stop--open { top: 2px; }
+.key__stop--here { bottom: 2px; border-color: var(--revision); background: var(--revision); }
+.key__wire { width: 34px; border: 1px solid var(--rule); background: var(--paper); }
+.key__wire span {
+  display: block; height: 7px; background: var(--paper-sunk);
+  border-bottom: 1px solid var(--rule);
+}
+.key__wire i { display: block; height: 15px; }
+.key__app { width: 34px; }
+.key__app span { display: block; height: 0; border-top: 2px solid var(--ink); }
+.key__app i {
+  display: block; height: 14px; margin-top: 4px;
+  background-image: repeating-linear-gradient(180deg, var(--rule) 0 1px, transparent 1px 6px);
+}
+
+.colophon {
+  max-width: var(--measure); margin: 0 auto;
+  padding: 0 1.75rem calc(4.5rem + env(safe-area-inset-bottom, 0px));
+}
+.colophon__box {
+  border: 1px solid var(--rule); background: var(--paper);
+  padding: 1.15rem 1.25rem 1.2rem;
+}
+.colophon__series {
+  font-family: var(--f-head); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--contour);
+  text-align: center; padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule); margin-bottom: 0.9rem;
+}
+.colophon__fields {
+  display: grid; grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.35rem 1rem; margin: 0;
+}
+.colophon__fields dt {
+  font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-soft); white-space: nowrap;
+  padding-top: 0.2em;
+}
+.colophon__fields dd {
+  margin: 0; font-family: var(--f-head); font-size: 0.73rem;
+  letter-spacing: 0.03em; color: var(--ink); line-height: 1.45;
+}
+.colophon__rights {
+  margin: 0.95rem 0 0; padding-top: 0.65rem;
+  border-top: 1px solid var(--rule-faint); text-align: center;
+  font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+@media (max-width: 26rem) {
+  .colophon__fields { grid-template-columns: 1fr; gap: 0.1rem; }
+  .colophon__fields dd { margin-bottom: 0.5rem; }
+  .colophon__fields dd:last-child { margin-bottom: 0; }
+}
 
 @media print {
   body { background-image: none; background-color: #fff; color: #000; }
@@ -605,6 +713,8 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
   .worksheet__tools, .instrument__tools, .saved { display: none !important; }
   .sheet { max-width: none; }
   .station { page-break-inside: avoid; }
+  .key, .colophon__box { page-break-inside: avoid; }
+  .colophon { max-width: none; padding-bottom: 0; }
   body.print-one > *:not(.is-print-target) { display: none !important; }
   body.print-one .is-print-target {
     display: block !important;
@@ -647,6 +757,8 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
   <a href="#corrections">Corrections and Retractions</a>
   <div class="index__part">IV | Passing Judgement</div>
   <a href="#factcheck">Fact-Checking</a>
+  <div class="index__part">Margin</div>
+  <a href="#key">Key to the Sheet</a>
 </nav>
 
 <main class="sheet" id="sheet">
@@ -1133,12 +1245,128 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
     </div>
   </section>
 
+  <section class="key" id="key" aria-labelledby="key-h">
+    <p class="key__label">Legend</p>
+    <h2 class="key__name" id="key-h">Key to the Sheet</h2>
+    <div class="key__list">
+
+      <div class="key__row">
+        <div class="key__mark key__mark--contour">
+          <svg width="16" height="14" viewBox="0 0 16 14" aria-hidden="true">
+            <path d="M8 1.5 L15 12.5 L1 12.5 Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <circle cx="8" cy="9.2" r="1.4" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <div class="key__term">Station</div>
+          <p class="key__gloss">One strategy, and the place you stand to use it. Six stations divide the sheet.</p>
+        </div>
+      </div>
+
+      <div class="key__row">
+        <div class="key__mark key__mark--contour">
+          <svg width="34" height="14" viewBox="0 0 150 20" aria-hidden="true">
+            <path d="M2 12 Q38 2 75 10 Q112 18 148 7" fill="none" stroke="currentColor" stroke-width="3.2"/>
+            <path d="M2 18 Q38 8 75 16 Q112 24 148 13" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="key__term">Contour</div>
+          <p class="key__gloss">The opening of a part. Four parts move from what a text says to what you decide about it.</p>
+        </div>
+      </div>
+
+      <div class="key__row">
+        <div class="key__mark key__mark--rule">
+          <svg width="34" height="10" viewBox="0 0 34 10" aria-hidden="true">
+            <path d="M0 2 H34" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <path d="M1 2 V6 M8 2 V6 M15 2 V6 M22 2 V6 M29 2 V6" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="key__term">Baseline</div>
+          <p class="key__gloss">A measured interval. It separates a passage from the work done on that passage.</p>
+        </div>
+      </div>
+
+      <div class="key__row">
+        <div class="key__mark">
+          <div class="key__traverse" aria-hidden="true">
+            <span class="key__stop key__stop--open"></span>
+            <span class="key__stop key__stop--here"></span>
+          </div>
+        </div>
+        <div>
+          <div class="key__term">Traverse</div>
+          <p class="key__gloss">The line of stations in the left margin on a wide screen. Hollow is a station you have not reached; filled is where you are now.</p>
+        </div>
+      </div>
+
+      <div class="key__row">
+        <div class="key__mark key__mark--water">
+          <svg width="30" height="14" viewBox="0 0 30 14" aria-hidden="true">
+            <path d="M0 11 H20" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M20 11 L29 3 M22.5 3 H29 V9.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+          </svg>
+        </div>
+        <div>
+          <div class="key__term">Hydrography</div>
+          <p class="key__gloss">Blue is a route off the sheet. Every blue link opens a source you can read for yourself rather than take on our word.</p>
+        </div>
+      </div>
+
+      <div class="key__row">
+        <div class="key__mark key__mark--revision">
+          <svg width="30" height="16" viewBox="0 0 30 16" aria-hidden="true">
+            <g class="key__base">
+              <path d="M1 5 H29 M1 11 H29" stroke="currentColor" stroke-width="1"/>
+            </g>
+            <path d="M4 14 L26 2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="key__term">Overprint</div>
+          <p class="key__gloss">Red is added after the base survey was drawn. Here it marks your position and any control that resets or clears your work.</p>
+        </div>
+      </div>
+
+      <div class="key__row">
+        <div class="key__mark">
+          <div class="key__wire" aria-hidden="true"><span></span><i></i></div>
+        </div>
+        <div>
+          <div class="key__term">Exhibit</div>
+          <p class="key__gloss">A source reproduced as it was published, under its own dateline. Read it before you read anything written about it.</p>
+        </div>
+      </div>
+
+      <div class="key__row">
+        <div class="key__mark">
+          <div class="key__app" aria-hidden="true"><span></span><i></i></div>
+        </div>
+        <div>
+          <div class="key__term">Apparatus</div>
+          <p class="key__gloss">The heavy rule opens a note on the exhibit above it, in the manner of a critical edition: what to notice, and where the claim came from.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
 <footer class="colophon">
-  West Essex High School Library <span class="dot">&#183;</span> Mr. Thompson
-  <span class="dot">&#183;</span> Working draft <span class="dot">&#183;</span>
-  &copy; <span id="yr">2026</span>
+  <div class="colophon__box">
+    <p class="colophon__series">Library Lyceum</p>
+    <dl class="colophon__fields">
+      <dt>Sheet</dt><dd>Reading Further: Advanced Strategies for Engaging with Texts</dd>
+      <dt>Edition</dt><dd>First</dd>
+      <dt>Compiled</dt><dd>West Essex High School Library &#183; Mr. Thompson</dd>
+      <dt>Surveyed</dt><dd><time datetime="2026-09">September 2026</time></dd>
+      <dt>Sources checked</dt><dd><time datetime="2026-09-17">17 September 2026</time></dd>
+    </dl>
+    <p class="colophon__rights">&copy; <span id="yr">2026</span></p>
+  </div>
 </footer>
 
 <script>
@@ -1630,7 +1858,7 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
     if (input.value) run();
   }());
 
-  var stations = document.querySelectorAll('.station[id]');
+  var stations = document.querySelectorAll('.station[id], .key[id]');
   var links = document.querySelectorAll('.index a');
   if ('IntersectionObserver' in window && stations.length) {
     var obs = new IntersectionObserver(function (entries) {
