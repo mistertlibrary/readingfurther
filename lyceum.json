@@ -1,0 +1,34 @@
+{
+  "name": "Reading Further",
+  "slug": "readingfurther",
+  "url": "https://mistertlibrary.github.io/readingfurther/",
+  "description": "",
+  "sections": [
+    {
+      "title": "Faulty Information",
+      "anchor": "#faulty"
+    },
+    {
+      "title": "Stated vs. Implied Thesis",
+      "anchor": "#thesis"
+    },
+    {
+      "title": "Lateral Reading",
+      "anchor": "#lateral"
+    },
+    {
+      "title": "Bibliographic Mining",
+      "anchor": "#biblio"
+    },
+    {
+      "title": "Corrections and Retractions",
+      "anchor": "#corrections"
+    },
+    {
+      "title": "Fact-Checking",
+      "anchor": "#factcheck"
+    }
+  ],
+  "keywords": [],
+  "updated": "2026-09-17"
+}
