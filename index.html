@@ -53,6 +53,15 @@
   --leading:  1.72;
   --measure:  36rem;
   --track:    0.5rem;
+
+  --t-micro:  max(11.4px, calc(var(--size) * 0.640));
+  --t-mini:   max(12.2px, calc(var(--size) * 0.695));
+  --t-label:  calc(var(--size) * 0.760);
+  --t-ui:     calc(var(--size) * 0.810);
+  --t-small:  calc(var(--size) * 0.870);
+  --t-note:   calc(var(--size) * 0.930);
+  --t-lead:   calc(var(--size) * 0.990);
+  --t-strong: calc(var(--size) * 1.120);
 }
 
 :root[data-theme="dark"] {
@@ -124,7 +133,7 @@ body {
 .skip {
   position: absolute; top: -4rem; left: 0.75rem; z-index: 900;
   background: var(--ink); color: var(--paper);
-  font-family: var(--f-head); font-size: 0.75rem; letter-spacing: 0.08em;
+  font-family: var(--f-head); font-size: var(--t-label); letter-spacing: 0.08em;
   text-transform: uppercase; padding: 0.6rem 1rem; text-decoration: none;
 }
 .skip:focus { top: 0.75rem; }
@@ -139,19 +148,19 @@ body {
   padding: 0.6rem clamp(0.9rem, 3vw, 2rem);
 }
 .masthead__name {
-  font-family: var(--f-head); font-size: 0.78rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-ui); font-weight: 700;
   letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink);
 }
 .masthead__name span { color: var(--revision); letter-spacing: 0.14em; }
 .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem 1rem; }
 .cluster { display: flex; align-items: center; gap: 0.25rem; }
 .cluster__label {
-  font-family: var(--f-head); font-size: 0.6rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-micro); font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
   margin-right: 0.15rem;
 }
 .btn {
-  font-family: var(--f-head); font-size: 0.66rem; font-weight: 600;
+  font-family: var(--f-head); font-size: var(--t-mini); font-weight: 600;
   letter-spacing: 0.06em; text-transform: uppercase;
   background: transparent; color: var(--ink);
   border: 1px solid var(--rule); padding: 0.24rem 0.5rem;
@@ -161,6 +170,48 @@ body {
 .btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .btn--rev { border-color: var(--revision); color: var(--revision); }
 .btn--rev[aria-pressed="true"] { background: var(--revision); color: var(--paper); border-color: var(--revision); }
+
+.toc { display: none; position: static; }
+@media (max-width: 1180px) { .toc { display: block; } }
+.toc__summary {
+  display: flex; align-items: center; gap: 0.45rem;
+  min-height: 1.75rem; padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rule); cursor: pointer;
+  font-family: var(--f-head); font-size: var(--t-mini); font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  list-style: none;
+}
+.toc__summary { background: transparent; }
+.toc__summary::after {
+  content: "+"; font-family: var(--f-mono); font-weight: 400;
+  line-height: 1; color: var(--contour);
+}
+.toc__summary[aria-expanded="true"]::after { content: "\2212"; }
+.toc__summary:hover,
+.toc__summary[aria-expanded="true"] { border-color: var(--ink); color: var(--ink); }
+.toc__list {
+  position: absolute; z-index: 520;
+  top: calc(100% + 0.45rem); right: clamp(0.9rem, 3vw, 2rem);
+  min-width: min(15rem, calc(100vw - 2rem));
+  max-width: min(21rem, calc(100vw - 2rem));
+  max-height: min(70vh, 28rem); overflow-y: auto;
+  background: var(--paper); border: 1px solid var(--ink);
+  padding: 0.8rem 0.95rem 0.9rem;
+}
+.toc__part {
+  display: block; font-family: var(--f-mono); font-size: var(--t-micro);
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--contour);
+  margin: 0.7rem 0 0.15rem;
+}
+.toc__part:first-child { margin-top: 0; }
+.toc__list a {
+  display: block; padding: 0.3rem 0; min-height: 1.5rem;
+  font-family: var(--f-head); font-size: var(--t-mini); line-height: 1.35;
+  color: var(--ink-soft); text-decoration: none;
+}
+.toc__list a:hover { color: var(--ink); }
+.toc__list a.is-here { color: var(--revision); }
+.toc__list[hidden] { display: none; }
 
 .a11y-toggle {
   position: fixed;
@@ -204,12 +255,12 @@ body {
   width: 12rem; z-index: 200;
 }
 .index__label {
-  font-family: var(--f-head); font-size: 0.58rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-micro); font-weight: 700;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
   border-bottom: 1px solid var(--rule); padding-bottom: 0.3rem; margin-bottom: 0.45rem;
 }
 .index__part {
-  font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+  font-family: var(--f-mono); font-size: var(--t-micro); letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--contour);
   margin: 0.7rem 0 0.15rem;
 }
@@ -220,7 +271,7 @@ body {
 }
 .index__part { padding-left: 1.1rem; }
 .index a {
-  display: block; position: relative; font-family: var(--f-head); font-size: 0.66rem;
+  display: block; position: relative; font-family: var(--f-head); font-size: var(--t-mini);
   color: var(--ink-soft); text-decoration: none; line-height: 1.32;
   padding: 0.2rem 0 0.2rem 1.1rem;
 }
@@ -247,11 +298,11 @@ body {
 .title__mark { display: block; margin: 0 auto 1.75rem; color: var(--contour); }
 h1 {
   font-family: var(--f-head); font-weight: 700;
-  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  font-size: clamp(calc(var(--size) * 1.67), 5vw, calc(var(--size) * 2.54));
   letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.15;
 }
 .title__sub {
-  font-family: var(--f-head); font-size: 0.72rem; font-weight: 600;
+  font-family: var(--f-head); font-size: var(--t-label); font-weight: 600;
   letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--ink-soft); margin-top: 0.9rem;
 }
@@ -259,7 +310,7 @@ h1 {
 .title__lede p { margin-bottom: 1em; }
 .title__lede p:last-child { margin-bottom: 0; }
 .title__by {
-  font-family: var(--f-head); font-size: 0.64rem; font-weight: 600;
+  font-family: var(--f-head); font-size: var(--t-mini); font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--ink-soft); margin-top: 2.25rem;
 }
@@ -268,10 +319,10 @@ h1 {
   border: 1px solid var(--revision); border-left-width: 3px;
   background: var(--revision-bg);
   padding: 1rem 1.15rem; margin: 0 auto 3rem; max-width: var(--measure);
-  font-size: 0.9rem; line-height: 1.6;
+  font-size: var(--t-note); line-height: 1.6;
 }
 .draftbar h2 {
-  font-family: var(--f-head); font-size: 0.66rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-mini); font-weight: 700;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--revision);
   text-align: center; margin-bottom: 0.6rem;
 }
@@ -281,16 +332,16 @@ h1 {
 .part { margin: 5rem 0 3rem; text-align: center; }
 .part__rule { display: block; margin: 0 auto 1rem; color: var(--contour); }
 .part__num {
-  font-family: var(--f-mono); font-size: 0.66rem;
+  font-family: var(--f-mono); font-size: var(--t-mini);
   letter-spacing: 0.24em; text-transform: uppercase; color: var(--contour);
 }
 .part__name {
-  font-family: var(--f-head); font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+  font-family: var(--f-head); font-size: clamp(calc(var(--size) * 0.92), 2.6vw, calc(var(--size) * 1.14));
   font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
   margin-top: 0.4rem;
 }
 .part__gloss {
-  font-size: 0.92rem; color: var(--ink-soft); font-style: italic;
+  font-size: var(--t-note); color: var(--ink-soft); font-style: italic;
   max-width: 26rem; margin: 0.7rem auto 0;
 }
 
@@ -301,17 +352,17 @@ h1 {
 }
 .station__mark { color: var(--contour); flex: none; }
 h2.station__name {
-  font-family: var(--f-head); font-size: clamp(1.15rem, 3vw, 1.5rem);
+  font-family: var(--f-head); font-size: clamp(calc(var(--size) * 1.01), 3vw, calc(var(--size) * 1.32));
   font-weight: 700; letter-spacing: 0.05em; text-align: center;
 }
 .station__id {
   display: block; text-align: center;
-  font-family: var(--f-mono); font-size: 0.62rem;
+  font-family: var(--f-mono); font-size: var(--t-micro);
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--ink-soft); margin-bottom: 1.9rem;
 }
-h3 {
-  font-family: var(--f-head); font-size: 0.76rem; font-weight: 700;
+.station h3:not(.card__h) {
+  font-family: var(--f-head); font-size: var(--t-label); font-weight: 700;
   letter-spacing: 0.14em; text-transform: uppercase; text-align: center;
   color: var(--ink-soft); margin: 2.5rem 0 1.1rem;
 }
@@ -338,7 +389,7 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
   border-bottom: 1px solid var(--rule);
   background: var(--paper-sunk);
   padding: 0.5rem 0.9rem;
-  font-family: var(--f-mono); font-size: 0.63rem;
+  font-family: var(--f-mono); font-size: var(--t-micro);
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
 }
 .exhibit__strip b { color: var(--ink); font-weight: 700; letter-spacing: 0.14em; }
@@ -349,16 +400,16 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
 .apparatus {
   border-top: 2px solid var(--ink); margin-top: 1.4rem;
   padding-top: 0.85rem;
-  font-size: 0.88rem; line-height: 1.55; color: var(--ink-soft);
+  font-size: var(--t-small); line-height: 1.55; color: var(--ink-soft);
 }
 .apparatus__label {
-  font-family: var(--f-mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  font-family: var(--f-mono); font-size: var(--t-micro); letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--contour);
   display: block; text-align: center; margin-bottom: 0.7rem;
 }
 .apparatus dl { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 0.8rem; }
 .apparatus dt {
-  font-family: var(--f-mono); font-size: 0.8rem; color: var(--ink);
+  font-family: var(--f-mono); font-size: var(--t-ui); color: var(--ink);
   white-space: nowrap;
 }
 .apparatus dd { margin: 0; }
@@ -371,7 +422,7 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
 }
 .revision__tag {
   display: block;
-  font-family: var(--f-mono); font-size: 0.6rem; font-weight: 700;
+  font-family: var(--f-mono); font-size: var(--t-micro); font-weight: 700;
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--revision); margin-bottom: 0.75rem;
 }
@@ -381,7 +432,7 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
   letter-spacing: 0.04em; text-align: center; margin: 1.2rem 0;
 }
 .revision-note {
-  font-family: var(--f-mono); font-size: 0.62rem; letter-spacing: 0.08em;
+  font-family: var(--f-mono); font-size: var(--t-micro); letter-spacing: 0.08em;
   color: var(--revision); text-align: center; margin: -1rem 0 1.5rem;
 }
 
@@ -391,29 +442,29 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
 }
 .instrument__head { text-align: center; margin-bottom: 1.5rem; }
 .instrument__kicker {
-  display: block; font-family: var(--f-mono); font-size: 0.6rem;
+  display: block; font-family: var(--f-mono); font-size: var(--t-micro);
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--contour); margin-bottom: 0.5rem;
 }
 .instrument__title {
-  font-family: var(--f-head); font-size: 1rem; font-weight: 700; letter-spacing: 0.04em;
+  font-family: var(--f-head); font-size: var(--t-lead); font-weight: 700; letter-spacing: 0.04em;
 }
 .instrument__note {
-  font-size: 0.88rem; color: var(--ink-soft); line-height: 1.55;
+  font-size: var(--t-small); color: var(--ink-soft); line-height: 1.55;
   max-width: 32rem; margin: 0.65rem auto 0;
 }
 .instrument__tools {
   display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.5rem;
 }
 .readout {
-  text-align: center; font-family: var(--f-mono); font-size: 0.66rem;
+  text-align: center; font-family: var(--f-mono); font-size: var(--t-mini);
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--ink-soft); margin-top: 1rem; min-height: 1em;
 }
 .readout, .ledger dd, .term-row span:last-child, .notice-item .attrib,
 .mine__row, .verdict, .bearing-row { font-variant-numeric: tabular-nums lining-nums; }
 .instrument select {
-  font-family: var(--f-head); font-size: 0.78rem;
+  font-family: var(--f-head); font-size: var(--t-ui);
   color: var(--ink); background: var(--paper);
   border: 1px solid var(--rule); padding: 0.35rem 0.4rem;
   max-width: 100%;
@@ -424,64 +475,64 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
   padding: 0.9rem 1.1rem; margin-bottom: 1.6rem;
 }
 .act__label {
-  display: block; font-family: var(--f-mono); font-size: 0.6rem;
+  display: block; font-family: var(--f-mono); font-size: var(--t-micro);
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--contour); margin-bottom: 0.4rem;
 }
-.act p { font-size: 1.02rem; margin: 0; }
+.act p { font-size: var(--t-lead); margin: 0; }
 .qset { border: none; margin: 0 0 1.15rem; padding: 0; }
 .qset legend {
-  font-family: var(--f-head); font-size: 0.68rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-mini); font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--ink-soft); margin-bottom: 0.5rem; padding: 0;
 }
 .qset label {
   display: inline-flex; align-items: center; gap: 0.35rem;
-  font-size: 0.88rem; margin: 0 1.1rem 0.4rem 0; cursor: pointer;
+  font-size: var(--t-small); margin: 0 1.1rem 0.4rem 0; cursor: pointer;
 }
 .qset input { accent-color: var(--water); }
 .verdict {
   border-top: 2px solid var(--ink); padding-top: 1.1rem; margin-top: 0.6rem; text-align: center;
 }
 .verdict__label {
-  display: block; font-family: var(--f-mono); font-size: 0.6rem;
+  display: block; font-family: var(--f-mono); font-size: var(--t-micro);
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--ink-soft); margin-bottom: 0.5rem;
 }
 .verdict strong {
-  display: block; font-family: var(--f-head); font-size: 1.12rem;
+  display: block; font-family: var(--f-head); font-size: var(--t-strong);
   font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
 }
 .verdict[data-v="mis"]  strong { color: var(--water); }
 .verdict[data-v="dis"]  strong { color: var(--revision); }
 .verdict[data-v="none"] strong { color: var(--ink-soft); }
-.verdict p { font-size: 0.9rem; color: var(--ink-soft); margin: 0.65rem auto 0; max-width: 30rem; }
+.verdict p { font-size: var(--t-note); color: var(--ink-soft); margin: 0.65rem auto 0; max-width: 30rem; }
 .case-note {
   border-left: 3px solid var(--water); padding: 0.15rem 0 0.15rem 0.9rem;
-  margin: -0.6rem 0 1.6rem; font-size: 0.9rem; color: var(--ink-soft); line-height: 1.6;
+  margin: -0.6rem 0 1.6rem; font-size: var(--t-note); color: var(--ink-soft); line-height: 1.6;
 }
 .case-note p { margin-bottom: 0.7rem; }
-.case-note__links { font-size: 0.82rem; }
+.case-note__links { font-size: var(--t-small); }
 .case-note__links a { margin-right: 0.9rem; }
 .ledger {
   border: 1px solid var(--rule); border-left: 3px solid var(--contour);
   background: var(--paper-sunk); padding: 1.1rem 1.15rem; margin-top: 1.4rem;
 }
 .ledger__label {
-  display: block; font-family: var(--f-mono); font-size: 0.6rem;
+  display: block; font-family: var(--f-mono); font-size: var(--t-micro);
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--contour); margin-bottom: 0.75rem;
 }
 .ledger dl { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 0.9rem; margin: 0; }
 @media (max-width: 34rem) { .ledger dl { grid-template-columns: 1fr; gap: 0.15rem; } }
 .ledger dt {
-  font-family: var(--f-head); font-size: 0.62rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-micro); font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap;
 }
-.ledger dd { margin: 0; font-size: 0.88rem; line-height: 1.55; }
+.ledger dd { margin: 0; font-size: var(--t-small); line-height: 1.55; }
 .ledger__verdict {
   border-top: 1px solid var(--rule); margin-top: 0.9rem; padding-top: 0.8rem;
-  font-size: 0.9rem; color: var(--ink-soft); line-height: 1.55;
+  font-size: var(--t-note); color: var(--ink-soft); line-height: 1.55;
 }
 .ledger__verdict b { color: var(--ink); }
 
@@ -494,12 +545,12 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
 .bearing-card { border-left: 3px solid var(--rule); padding: 0.15rem 0 0.15rem 0.9rem; margin-bottom: 1.2rem; }
 .bearing-card.is-fixed    { border-left-color: var(--water); }
 .bearing-card.is-conflict { border-left-color: var(--revision); }
-.bearing-card h4 {
-  font-family: var(--f-head); font-size: 0.68rem; font-weight: 700;
+.bearing-card .card__h {
+  font-family: var(--f-head); font-size: var(--t-mini); font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--ink-soft); margin-bottom: 0.55rem; text-align: left;
 }
-.bearing-card .ask { font-size: 0.87rem; color: var(--ink-soft); margin-bottom: 0.6rem; }
+.bearing-card .ask { font-size: var(--t-small); color: var(--ink-soft); margin-bottom: 0.6rem; }
 .bearing-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; margin-top: 0.5rem; }
 .bearing-row input { flex: 1 1 10rem; width: auto; }
 
@@ -509,18 +560,18 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
 }
 @media (max-width: 40rem) { .mine__row { grid-template-columns: 1fr; } }
 .mine__head {
-  font-family: var(--f-head); font-size: 0.6rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-micro); font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
 }
 @media (max-width: 40rem) { .mine__head { display: none; } }
 .mine__drop {
-  font-family: var(--f-mono); font-size: 0.9rem; line-height: 1;
+  font-family: var(--f-mono); font-size: var(--t-note); line-height: 1;
   background: transparent; border: 1px solid var(--rule);
   color: var(--ink-soft); padding: 0.3rem 0.5rem; cursor: pointer;
 }
 .mine__drop:hover { border-color: var(--revision); color: var(--revision); }
 .mine__row input {
-  width: 100%; font-family: var(--f-body); font-size: 0.9rem;
+  width: 100%; font-family: var(--f-body); font-size: var(--t-note);
   color: var(--ink); background: var(--paper);
   border: 1px solid var(--rule); padding: 0.45rem 0.55rem;
 }
@@ -532,16 +583,16 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
 .notice-item.is-right { border-left-color: var(--water); }
 .notice-item.is-wrong { border-left-color: var(--revision); }
 .notice-item blockquote {
-  font-style: italic; margin-bottom: 0.55rem; font-size: 0.97rem;
+  font-style: italic; margin-bottom: 0.55rem; font-size: var(--t-lead);
 }
 .notice-item .attrib {
-  display: block; font-family: var(--f-mono); font-size: 0.6rem;
+  display: block; font-family: var(--f-mono); font-size: var(--t-micro);
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
   margin-bottom: 0.85rem;
 }
 .notice-choices { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 .notice-reveal {
-  margin-top: 0.9rem; font-size: 0.9rem; color: var(--ink-soft);
+  margin-top: 0.9rem; font-size: var(--t-note); color: var(--ink-soft);
   line-height: 1.55; display: none;
 }
 .notice-reveal.is-shown { display: block; }
@@ -550,19 +601,19 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
 .btn--pick:disabled { cursor: default; }
 .caveat {
   border-top: 1px solid var(--rule); margin-top: 1.4rem; padding-top: 1rem;
-  font-size: 0.88rem; color: var(--ink-soft); line-height: 1.55;
+  font-size: var(--t-small); color: var(--ink-soft); line-height: 1.55;
 }
 
 .terms-out { margin-top: 1.2rem; }
 .term-row {
   display: grid; grid-template-columns: 9rem 1fr 2.5rem;
   gap: 0.6rem; align-items: center; margin-bottom: 0.4rem;
-  font-size: 0.9rem;
+  font-size: var(--t-note);
 }
 .term-row b { font-weight: 700; }
 .term-bar { height: 0.62rem; background: var(--water); min-width: 2px; }
 .term-row span:last-child {
-  font-family: var(--f-mono); font-size: 0.72rem; color: var(--ink-soft); text-align: right;
+  font-family: var(--f-mono); font-size: var(--t-label); color: var(--ink-soft); text-align: right;
 }
 
 .worksheet {
@@ -573,21 +624,21 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
 }
 .worksheet__head { text-align: center; margin-bottom: 1.6rem; }
 .worksheet__title {
-  font-family: var(--f-head); font-size: 1.02rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-lead); font-weight: 700;
   letter-spacing: 0.05em;
 }
 .worksheet__sub {
-  font-size: 0.9rem; color: var(--ink-soft);
+  font-size: var(--t-note); color: var(--ink-soft);
   max-width: 30rem; margin: 0.7rem auto 0;
 }
 .field { margin-bottom: 1.3rem; }
 .field__label {
-  display: block; font-family: var(--f-head); font-size: 0.64rem; font-weight: 700;
+  display: block; font-family: var(--f-head); font-size: var(--t-mini); font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
   margin-bottom: 0.35rem;
 }
 .field input, .field textarea {
-  width: 100%; font-family: var(--f-body); font-size: 0.95rem;
+  width: 100%; font-family: var(--f-body); font-size: var(--t-note);
   color: var(--ink); background: var(--paper);
   border: 1px solid var(--rule); padding: 0.55rem 0.65rem; line-height: 1.5;
 }
@@ -595,17 +646,17 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
 .cs-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem 1.75rem; }
 @media (max-width: 48rem) { .cs-grid { grid-template-columns: 1fr; } }
 .c-panel { border-top: 1px solid var(--rule); padding-top: 0.9rem; }
-.c-panel h4 {
-  font-family: var(--f-head); font-size: 1rem; font-weight: 700;
+.c-panel .card__h {
+  font-family: var(--f-head); font-size: var(--t-lead); font-weight: 700;
   color: var(--water); margin-bottom: 0.5rem; letter-spacing: 0.02em;
 }
-.c-panel h4::first-letter { font-size: 1.9em; line-height: 0.75; color: var(--revision); }
-.c-panel p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; margin-bottom: 0.8rem; }
+.c-panel .card__h::first-letter { font-size: 1.9em; line-height: 0.75; color: var(--revision); }
+.c-panel p { font-size: var(--t-small); color: var(--ink-soft); line-height: 1.5; margin-bottom: 0.8rem; }
 .worksheet__tools {
   display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.8rem;
 }
 .saved {
-  text-align: center; font-family: var(--f-mono); font-size: 0.62rem;
+  text-align: center; font-family: var(--f-mono); font-size: var(--t-micro);
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
   margin-top: 0.9rem; min-height: 1em;
 }
@@ -616,12 +667,12 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
   scroll-margin-top: 4.5rem;
 }
 .key__label {
-  font-family: var(--f-mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  font-family: var(--f-mono); font-size: var(--t-micro); letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--contour);
   text-align: center; margin-bottom: 0.3rem;
 }
 h2.key__name {
-  font-family: var(--f-head); font-size: 1rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-lead); font-weight: 700;
   letter-spacing: 0.06em; text-align: center; margin-bottom: 1.4rem;
 }
 .key__list { display: grid; gap: 1rem; margin: 0; }
@@ -639,11 +690,11 @@ h2.key__name {
 .key__mark--rule     { color: var(--ink-soft); }
 .key__base           { color: var(--ink-soft); opacity: 0.55; }
 .key__term {
-  font-family: var(--f-head); font-size: 0.68rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-mini); font-weight: 700;
   letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink);
   margin-bottom: 0.2rem;
 }
-.key__gloss { font-size: 0.85rem; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+.key__gloss { font-size: var(--t-small); line-height: 1.5; color: var(--ink-soft); margin: 0; }
 .key__traverse { position: relative; width: 11px; height: 34px; }
 .key__traverse::before {
   content: ""; position: absolute; left: 5px; top: 0; bottom: 0; width: 1px;
@@ -677,7 +728,7 @@ h2.key__name {
   padding: 1.15rem 1.25rem 1.2rem;
 }
 .colophon__series {
-  font-family: var(--f-head); font-size: 0.6rem; font-weight: 700;
+  font-family: var(--f-head); font-size: var(--t-micro); font-weight: 700;
   letter-spacing: 0.22em; text-transform: uppercase; color: var(--contour);
   text-align: center; padding-bottom: 0.6rem;
   border-bottom: 1px solid var(--rule); margin-bottom: 0.9rem;
@@ -687,18 +738,18 @@ h2.key__name {
   gap: 0.35rem 1rem; margin: 0;
 }
 .colophon__fields dt {
-  font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  font-family: var(--f-mono); font-size: var(--t-micro); letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--ink-soft); white-space: nowrap;
   padding-top: 0.2em;
 }
 .colophon__fields dd {
-  margin: 0; font-family: var(--f-head); font-size: 0.73rem;
+  margin: 0; font-family: var(--f-head); font-size: var(--t-label);
   letter-spacing: 0.03em; color: var(--ink); line-height: 1.45;
 }
 .colophon__rights {
   margin: 0.95rem 0 0; padding-top: 0.65rem;
   border-top: 1px solid var(--rule-faint); text-align: center;
-  font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.12em;
+  font-family: var(--f-mono); font-size: var(--t-micro); letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--ink-soft);
 }
 @media (max-width: 26rem) {
@@ -709,7 +760,7 @@ h2.key__name {
 
 @media print {
   body { background-image: none; background-color: #fff; color: #000; }
-  .masthead, .index, .skip, .a11y-toggle, .a11y-panel,
+  .masthead, .index, .toc, .skip, .a11y-toggle, .a11y-panel,
   .worksheet__tools, .instrument__tools, .saved { display: none !important; }
   .sheet { max-width: none; }
   .station { page-break-inside: avoid; }
@@ -743,12 +794,30 @@ h2.key__name {
 
 <header class="masthead">
   <span class="masthead__name">Reading Further</span>
+  <div class="toc">
+    <button class="toc__summary" type="button" id="toc-toggle"
+            aria-expanded="false" aria-controls="toc-list">Stations</button>
+    <nav class="toc__list" id="toc-list" aria-label="Stations" hidden>
+      <span class="toc__part">I | Faulty Information</span>
+      <a href="#faulty">Weigh the Evidence</a>
+      <span class="toc__part">II | Within the Text</span>
+      <a href="#thesis">Stated vs. Implied Thesis</a>
+      <span class="toc__part">III | Around the Text</span>
+      <a href="#lateral">Lateral Reading</a>
+      <a href="#biblio">Bibliographic Mining</a>
+      <a href="#corrections">Corrections and Retractions</a>
+      <span class="toc__part">IV | Passing Judgement</span>
+      <a href="#factcheck">Fact-Checking</a>
+      <span class="toc__part">Margin</span>
+      <a href="#key">Key to the Sheet</a>
+    </nav>
+  </div>
 </header>
 
 <nav class="index" aria-label="Contents">
   <div class="index__label">Stations</div>
   <div class="index__part">I | Faulty Information</div>
-  <a href="#faulty">Faulty Information</a>
+  <a href="#faulty">Weigh the Evidence</a>
   <div class="index__part">II | Within the Text</div>
   <a href="#thesis">Stated vs. Implied Thesis</a>
   <div class="index__part">III | Around the Text</div>
@@ -800,7 +869,15 @@ h2.key__name {
     <p class="part__gloss">What common hazards imperil our information ecosystem? How can we recognize them?</p>
   </div>
 
-  <section class="station" id="faulty" aria-labelledby="part-faulty">
+  <section class="station" id="faulty" aria-labelledby="faulty-h">
+    <div class="station__head">
+      <svg class="station__mark" width="16" height="14" viewBox="0 0 16 14" aria-hidden="true">
+        <path d="M8 1.5 L15 12.5 L1 12.5 Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        <circle cx="8" cy="9.2" r="1.4" fill="currentColor"/>
+      </svg>
+      <h2 class="station__name" id="faulty-h">Weigh the Evidence</h2>
+    </div>
+    <span class="station__id">Station 1 | Consider the facts at hand.</span>
 
     <p>Faulty information comes in two primary forms.</p>
     <p>There&rsquo;s misinformation, which is false information shared inadvertently or accidentally. It may be incomplete, inaccurate, or misleading; it can also be completely wrong. Though it can cause damage, misinformation isn&rsquo;t deliberately malicious. Indeed, people often spread it without realizing what they&rsquo;re doing.</p>
@@ -849,7 +926,6 @@ h2.key__name {
     <div class="instrument" id="intent">
       <div class="instrument__head">
         <span class="instrument__kicker">Instrument | Station 1</span>
-        <div class="instrument__title">Weigh the Evidence</div>
         <p class="instrument__note">In the exercises below, the information itself never changes. Rather, the record shifts: what we know about the person responsible for its spread changes and, in turn, our perception of the content evolves. It&rsquo;s human intention, not any inherent quality, that molds our understanding of the information we encounter.</p>
       </div>
 
@@ -1044,7 +1120,7 @@ h2.key__name {
       </div>
 
       <div class="bearing-card" id="card-a">
-        <h4>Checkpoint A | Who Published This?</h4>
+        <h3 class="card__h">Checkpoint A | Who Published This?</h3>
         <p class="ask">Can you identify the publisher, the site owner, or the organization behind it? Be sure to record where you found this info!</p>
         <label class="field__label sr-only" for="bg-a">What you found at Station A</label>
         <textarea id="bg-a" data-ws rows="2" placeholder="What you found"></textarea>
@@ -1062,7 +1138,7 @@ h2.key__name {
       </div>
 
       <div class="bearing-card" id="card-b">
-        <h4>Checkpoint B | Who Really Funds This?</h4>
+        <h3 class="card__h">Checkpoint B | Who Really Funds This?</h3>
         <p class="ask">Follow the money; try to establish ownership. Who pays for this? What else do they pay for?</p>
         <label class="field__label sr-only" for="bg-b">What you found at Station B</label>
         <textarea id="bg-b" data-ws rows="2" placeholder="What you found"></textarea>
@@ -1080,7 +1156,7 @@ h2.key__name {
       </div>
 
       <div class="bearing-card" id="card-c">
-        <h4>Checkpoint C | Who Talks About This?</h4>
+        <h3 class="card__h">Checkpoint C | Who Talks About This?</h3>
         <p class="ask">Find additional coverage of the same subject. Does it agree? Does that information stem from an independent source?</p>
         <label class="field__label sr-only" for="bg-c">What you found at Station C</label>
         <textarea id="bg-c" data-ws rows="2" placeholder="What you found"></textarea>
@@ -1218,19 +1294,19 @@ h2.key__name {
 
       <div class="cs-grid">
         <div class="c-panel">
-          <h4>Creator</h4>
+          <h3 class="card__h">Creator</h3>
           <p>Who created this source? Is an author or authorial group identified? What are the creator&rsquo;s academic and/or professional credentials? Are they a recognized expert in their field? Who or what makes them an authority? Is the creator affiliated with institutions or organizations? What other connections are revealed by a cursory search?</p>
           <label class="field__label sr-only" for="ws-creator">Your notes on the creator</label>
           <textarea id="ws-creator" data-ws rows="3" placeholder="Your notes"></textarea>
         </div>
         <div class="c-panel">
-          <h4>Content</h4>
+          <h3 class="card__h">Content</h3>
           <p>Does the content provide ample attributions and citations? Are its sources easy to locate and verify? How does this information square with your prior knowledge about and other sources on the subject? Is it reasonable? How is the material written and organized? Whom is it addressing? What questions does it strive to answer? What positions does it take? When was the content last updated? When was it first created?</p>
           <label class="field__label sr-only" for="ws-content">Your notes on the content</label>
           <textarea id="ws-content" data-ws rows="3" placeholder="Your notes"></textarea>
         </div>
         <div class="c-panel">
-          <h4>Context</h4>
+          <h3 class="card__h">Context</h3>
           <p>Where, why, how, and by whom was this content disseminated? Who funded its creation? Where and how did you find it What other materials exist alongside it? Can you locate reviews of the content or its creator? Why does it exist? Whose agenda(s) does it serve?</p>
           <label class="field__label sr-only" for="ws-context">Your notes on the context</label>
           <textarea id="ws-context" data-ws rows="3" placeholder="Your notes"></textarea>
@@ -1858,8 +1934,28 @@ h2.key__name {
     if (input.value) run();
   }());
 
+  (function () {
+    var btn  = document.getElementById('toc-toggle');
+    var list = document.getElementById('toc-list');
+    if (!btn || !list) return;
+    function set(open) {
+      btn.setAttribute('aria-expanded', String(open));
+      list.hidden = !open;
+    }
+    btn.addEventListener('click', function () {
+      set(btn.getAttribute('aria-expanded') !== 'true');
+    });
+    list.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('click', function (e) {
+      if (!list.hidden && !btn.contains(e.target) && !list.contains(e.target)) set(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !list.hidden) { set(false); btn.focus(); }
+    });
+  }());
+
   var stations = document.querySelectorAll('.station[id], .key[id]');
-  var links = document.querySelectorAll('.index a');
+  var links = document.querySelectorAll('.index a, .toc__list a');
   if ('IntersectionObserver' in window && stations.length) {
     var obs = new IntersectionObserver(function (entries) {
       for (var i = 0; i < entries.length; i++) {
