@@ -1,34 +1,98 @@
 {
-  "name": "Reading Further",
-  "slug": "readingfurther",
+  "lyceum": 1,
+  "_note": "Generated for the Lyceum hub's unified search. Section titles are the guide's own headings. 'keywords' is optional and never displayed: it lets an evocative title stay evocative while remaining findable. Leave arrays empty until you have something to add.",
+  "title": "Research Basics: Reading Further",
+  "description": "Reading a text is one thing; making full use of its features is quite another. This guide provides advanced strategies for navigating within and beyond any given text.",
   "url": "https://mistertlibrary.github.io/readingfurther/",
-  "description": "",
+  "series": "Research Basics",
+  "course": "",
+  "subjects": [
+    "Basic Information and General Reference",
+    "English Language Arts",
+    "Social Studies",
+    "Science"
+  ],
   "sections": [
     {
       "title": "Weigh the Evidence",
-      "anchor": "#faulty"
+      "anchor": "#faulty",
+      "keywords": [
+        "misinformation",
+        "disinformation",
+        "fake news",
+        "propaganda",
+        "intent",
+        "purpose",
+        "truth",
+        "hoax"
+      ]
     },
     {
       "title": "Stated vs. Implied Thesis",
-      "anchor": "#thesis"
+      "anchor": "#thesis",
+      "keywords": [
+        "main idea",
+        "central argument",
+        "finding the thesis",
+        "inference",
+        "what is the author saying",
+        "claim"
+      ]
     },
     {
       "title": "Lateral Reading",
-      "anchor": "#lateral"
+      "anchor": "#lateral",
+      "keywords": [
+        "check the source",
+        "who published this",
+        "investigate a website",
+        "click restraint",
+        "funding",
+        "open a new tab"
+      ]
     },
     {
       "title": "Bibliographic Mining",
-      "anchor": "#biblio"
+      "anchor": "#biblio",
+      "keywords": [
+        "works cited",
+        "follow the footnotes",
+        "citation chaining",
+        "find more sources",
+        "reference list",
+        "backward search"
+      ]
     },
     {
       "title": "Corrections and Retractions",
-      "anchor": "#corrections"
+      "anchor": "#corrections",
+      "keywords": [
+        "retracted study",
+        "errata",
+        "corrigendum",
+        "expression of concern",
+        "withdrawn paper",
+        "was this corrected"
+      ]
     },
     {
       "title": "Fact-Checking",
-      "anchor": "#factcheck"
+      "anchor": "#factcheck",
+      "keywords": [
+        "snopes",
+        "politifact",
+        "verify a claim",
+        "debunk",
+        "is this real",
+        "reverse image search"
+      ]
     }
   ],
-  "keywords": [],
-  "updated": "2026-09-17"
+  "keywords": [
+    "information literacy",
+    "news literacy",
+    "evaluating sources",
+    "media literacy",
+    "misinformation"
+  ]
 }
