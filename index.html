@@ -396,6 +396,10 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
   white-space: nowrap;
 }
 .apparatus dd { margin: 0; }
+@media (max-width: 41rem) {
+  .apparatus--tools dl { grid-template-columns: 1fr; gap: 0.15rem; }
+  .apparatus--tools dd { margin-bottom: 0.7rem; }
+}
 
 .revision {
   border-left: 3px solid var(--revision);
@@ -1055,13 +1059,29 @@ a.ref::after { content: "\2197"; font-size: 0.72em; vertical-align: 0.35em; marg
         <path d="M8 1.5 L15 12.5 L1 12.5 Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
         <circle cx="8" cy="9.2" r="1.4" fill="currentColor"/>
       </svg>
-      <h2 class="station__name" id="biblio-h">Bibliographic Mining</h2>
+      <h2 class="station__name" id="biblio-h">Bibliographic Mining (also called citation chaining)</h2>
     </div>
     <span class="station__id">Station 4 | Take It Back Now, Y’all</span>
 
     <p>Bibliographic mining is a simple, oft-neglected strategy that makes use of the otherwise asinine practice of citing one&rsquo;s sources.</p>
     <p>Review the bibliography, works cited page, or references at the end of a text. If one seems useful (or suspicious!), try to locate it yourself. (If you&rsquo;re having a hard time, this is when your librarian can provide vital assistance.)</p>
     <p>This is how researchers build out source webs; it’s also, in theory, how the disingenuous are exposed.</p>
+
+    <div class="apparatus apparatus--tools">
+      <span class="apparatus__label">Tools</span>
+      <dl>
+        <dt><a class="ref" href="https://www.connectedpapers.com/" target="_blank" rel="noopener noreferrer">Connected Papers<span class="sr-only"> (opens in a new tab)</span></a></dt>
+        <dd>&ldquo;Connected Papers is a visual tool to help researchers and applied scientists find academic papers relevant to their field of work.&rdquo;</dd>
+        <dt><a class="ref" href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer">Google Scholar<span class="sr-only"> (opens in a new tab)</span></a></dt>
+        <dd>&ldquo;Google Scholar provides a simple way to broadly search for scholarly literature.&rdquo;</dd>
+        <dt><a class="ref" href="https://incitefulmed.com/academic/" target="_blank" rel="noopener noreferrer">Inciteful<span class="sr-only"> (opens in a new tab)</span></a></dt>
+        <dd>&ldquo;Using citations to find the most relevant literature. Committed to open access, Inciteful uses the power of graph analysis to help you explore and find the most relevant academic literature.&rdquo;</dd>
+        <dt><a class="ref" href="https://openknowledgemaps.org/" target="_blank" rel="noopener noreferrer">Open Knowledge Maps<span class="sr-only"> (opens in a new tab)</span></a></dt>
+        <dd>&ldquo;Start your literature search here: get a visual overview of a research topic, find relevant research outputs, and identify important concepts.&rdquo;</dd>
+        <dt><a class="ref" href="https://www.semanticscholar.org/" target="_blank" rel="noopener noreferrer">Semantic Scholar<span class="sr-only"> (opens in a new tab)</span></a></dt>
+        <dd>&ldquo;Semantic Scholar uses groundbreaking AI and engineering to understand the semantics of scientific literature to help Scholars discover relevant research.&rdquo;</dd>
+      </dl>
+    </div>
 
     <div class="instrument" id="mine">
       <div class="instrument__head">
